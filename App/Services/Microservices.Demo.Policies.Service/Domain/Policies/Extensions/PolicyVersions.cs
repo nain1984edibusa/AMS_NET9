@@ -14,7 +14,6 @@ public static class PolicyVersions
             .OrderByDescending(v => v.VersionNumber)
             .FirstOrDefault();
     }
-
     public static PolicyVersion WithNumber(this IEnumerable<PolicyVersion> versions, int number)
     {
         return versions.First(v => v.VersionNumber == number);

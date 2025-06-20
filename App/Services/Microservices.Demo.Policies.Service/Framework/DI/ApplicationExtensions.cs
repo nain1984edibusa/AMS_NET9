@@ -5,6 +5,7 @@ using Microservices.Demo.Policies.Service.Application.UseCases.Offer.Services;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.CreatePolicy;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.TerminatePolicy;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Interfaces;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetAllPolicies;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetPolicyDetailsByNumber;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Services;
 using Microservices.SharedKernel.Application.UseCases.Interfaces;
@@ -15,7 +16,8 @@ namespace Microservices.Demo.Policies.Service.Framework.DI
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            
+            services.AddScoped<IQueryUseCase<GetAllPoliciesQuery, GetAllPoliciesResult>, GetAllPoliciesUseCase>();
+
             services.AddScoped<ICommandUseCase<CreateOfferCommand, CreateOfferResult>, CreateOfferUseCase>();
             services.AddScoped<ICommandUseCase<CreateOfferByAgentCommand, CreateOfferByAgentResult>, CreateOfferByAgentUseCase>();
 

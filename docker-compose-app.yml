@@ -1,6 +1,6 @@
 x-service: &service
   deploy:
-      replicas: 2
+      replicas: 1
   restart: always
   environment:
     EUREKA__CLIENT__SERVICEURL: "http://eureka.server:8761/eureka"

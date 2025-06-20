@@ -12,6 +12,7 @@ using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.T
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.CreatePolicy;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Dtos;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetPolicyDetailsByNumber;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetAllPolicies;
 
 namespace Microservices.Demo.Products.Service.Framework.Rest.Mappings
 {
@@ -19,6 +20,7 @@ namespace Microservices.Demo.Products.Service.Framework.Rest.Mappings
     {
         public PolicyRestProfile()
         {
+            CreateMap<GetAllPoliciesRequest, GetAllPoliciesQuery>();
             CreateMap<GetPolicyDetailsByNumberRequest, GetPolicyDetailsByNumberQuery>();
             CreateMap<PolicyDto, GetPolicyDetailsByNumberResponse>();
 

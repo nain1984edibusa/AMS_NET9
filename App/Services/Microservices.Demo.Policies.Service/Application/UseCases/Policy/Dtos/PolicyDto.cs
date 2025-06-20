@@ -9,7 +9,6 @@
         public decimal TotalPremium { get; set; }
         public string ProductCode { get; set; }
         public string AccountNumber { get; set; }
-
         public List<string> Covers { get; set; }
     }
 }

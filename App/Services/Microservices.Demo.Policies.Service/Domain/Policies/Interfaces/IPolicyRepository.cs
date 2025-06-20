@@ -4,6 +4,7 @@ using Microservices.SharedKernel.Domain.Interfaces;
 namespace Microservices.Demo.Policies.Service.Domain.Policies.Interfaces;
 
 public interface IPolicyRepository : IRepository<Policy>
-{    
+{
+    Task<List<Policy>> FindAllPolicies();
     Task<Policy> WithNumber(string number);
 }

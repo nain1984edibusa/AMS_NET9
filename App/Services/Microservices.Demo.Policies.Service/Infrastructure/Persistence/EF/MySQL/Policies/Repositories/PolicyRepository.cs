@@ -10,6 +10,16 @@ namespace Microservices.Demo.Policies.Service.Infrastructure.Persistence.EF.MySQ
     {
         public PolicyRepository(PoliciesDbContext context) : base(context) { }
 
+        public async Task<List<Policy>> FindAllPolicies()
+        {
+            return await _context
+                .Policies
+                //.Include(c => c.Covers)
+                //.Include("Questions.Choices")
+                //.Where(p => p.Status == ProductStatus.Active)
+                .ToListAsync();
+        }
+
         public async Task<Policy> WithNumber(string number)
         {
             return await _context.Policies

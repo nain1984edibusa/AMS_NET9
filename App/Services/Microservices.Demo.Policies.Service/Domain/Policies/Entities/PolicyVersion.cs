@@ -15,7 +15,7 @@ namespace Microservices.Demo.Policies.Service.Domain.Policies.Entities
 
         private PolicyVersion(
             Policy policy,
-        int version,
+            int version,
             PolicyHolder policyHolder,
             Offer offer)
         {

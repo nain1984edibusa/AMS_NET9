@@ -2,12 +2,13 @@
 using Microservices.Demo.Messages.Services.Policies.Events;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.CreatePolicy;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Dtos;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetAllPolicies;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetPolicyDetailsByNumber;
 using Microservices.Demo.Policies.Service.Domain.Policies.Extensions;
 using Microservices.Demo.Policies.Service.Domain.Policies.ValueObjects;
-
-using PolicyEntity=Microservices.Demo.Policies.Service.Domain.Policies.Entities.Policy;
+using Microservices.Demo.Policies.Service.Framework.Rest.Models.Requests;
 using PersonMsgDto=Microservices.Demo.Messages.Services.Policies.Dtos.PersonDto;
-using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetPolicyDetailsByNumber;
+using PolicyEntity=Microservices.Demo.Policies.Service.Domain.Policies.Entities.Policy;
 
 namespace Microservices.Demo.Policies.Service.Application.UseCases.Policy.Mappings
 {
@@ -53,6 +54,12 @@ namespace Microservices.Demo.Policies.Service.Application.UseCases.Policy.Mappin
 
             CreateMap<PolicyEntity, CreatePolicyResult>().IncludeBase<PolicyEntity, PolicyDto>();
             CreateMap<PolicyEntity, GetPolicyDetailsByNumberResult>().IncludeBase<PolicyEntity, PolicyDto>();
+
+            CreateMap<List<PolicyEntity>, GetAllPoliciesResult>()
+              .ForMember(dest => dest.Policies, opt => opt.MapFrom(src => src));
+
+
+            CreateMap<GetAllPoliciesRequest, GetAllPoliciesQuery>();
         }
     }
 }

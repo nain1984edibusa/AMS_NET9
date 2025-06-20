@@ -27,7 +27,8 @@ namespace Microservices.Demo.Policies.Service.Framework
             return services;
         }
         public static async Task<WebApplication> UseHostSetupAsync(this WebApplication app)
-        {         
+        {
+            app.UseExceptionHandler("/errors");
             app.MapOpenApi();
             app.MapScalarApiReference(options => { options.Servers = Array.Empty<ScalarServer>(); });
             app.MapAllEndpoints();

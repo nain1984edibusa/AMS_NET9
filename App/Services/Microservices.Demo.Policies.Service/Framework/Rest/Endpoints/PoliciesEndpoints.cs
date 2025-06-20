@@ -8,6 +8,7 @@ namespace Microservices.Demo.Policies.Service.Framework.Rest.Endpoints
         {
             var group = app.MapGroup("/api/policies").WithTags("Policies");
 
+            group.MapGet("/", PoliciesHandlers.GetAllPoliciesAsync);
             group.MapGet("/{policyNumber:guid}", PoliciesHandlers.GetPolicyDetailsByNumberAsync);
             group.MapPost("/", PoliciesHandlers.CreatePolicyAsync);
             group.MapDelete("/terminate", PoliciesHandlers.TerminatePolicyAsync);

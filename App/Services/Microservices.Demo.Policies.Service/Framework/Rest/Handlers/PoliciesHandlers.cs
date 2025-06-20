@@ -2,6 +2,7 @@
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.CreatePolicy;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.TerminatePolicy;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Interfaces;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetAllPolicies;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetPolicyDetailsByNumber;
 using Microservices.Demo.Policies.Service.Framework.Rest.Models.Requests;
 using Microservices.Demo.Policies.Service.Framework.Rest.Models.Responses;
@@ -12,6 +13,26 @@ namespace Microservices.Demo.Policies.Service.Framework.Rest.Handlers
 {
     public static class PoliciesHandlers
     {
+        public static async Task<IResult> GetAllPoliciesAsync(
+           [FromServices] IPolicyApplicationService _service,
+           [AsParameters] GetAllPoliciesRequest request
+        )
+        {
+            var query = new GetAllPoliciesQuery
+            {
+                Page = request.Page,
+                PageSize = request.PageSize
+            };
+
+            var result = await _service.GetAllPolicies.ExecuteAsync(query);
+
+            var response = new GetAllPoliciesResponse
+            {
+                Policies = result.Policies
+            };
+
+            return Results.Ok(response);
+        }
         public static async Task<IResult> GetPolicyDetailsByNumberAsync(
            [FromServices] IMapper _mapper,
            [FromServices] IPolicyApplicationService _service,

@@ -17,6 +17,12 @@ services:
       context: .
       dockerfile: App/Services/Microservices.Demo.Product.Service/Dockerfile
     image: products.service:1.0.0
+  report.service:
+    <<: *service
+    build:
+      context: .
+      dockerfile: App/Services/Microservices.Demo.Report.Service/Dockerfile
+    image: report.service:1.0.0
   pricing.service:
     <<: *service
     build:

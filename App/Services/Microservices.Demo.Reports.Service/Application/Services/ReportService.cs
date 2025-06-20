@@ -22,8 +22,8 @@ namespace Microservices.Demo.Reports.Service.Application.Services
 
             foreach (var policy in policies)
             {
-                //var product = await _productClient.GetProductByIdAsync(policy.ProductId);
-                //if (product == null) continue;
+                var product = await _productClient.GetProductByCodeAsync(policy.ProductCode);
+                if (product == null) continue;
 
                 report.Add(new PolicyReportDto
                 {
@@ -34,6 +34,7 @@ namespace Microservices.Demo.Reports.Service.Application.Services
 
                     PolicyNumber = policy.Number,
                     ProductCode = policy.ProductCode,
+                    DescripcionCode = product.description
 
 
 

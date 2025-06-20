@@ -19,16 +19,8 @@ builder.Services.AddScoped<IProductClient, ProductClient>();
 builder.Services.AddHttpClient<IPolicyClient, PolicyClient>(client =>
     client.BaseAddress = new Uri("http://localhost:5182")); // Cambia a host real
 
-
-//builder.Services.AddHttpClient("Policies", client =>
-//{
-//    client.BaseAddress = new Uri("http://localhost:5182"); // policies.service
-//});
-
-//builder.Services.AddHttpClient("Products", client =>
-//{
-//    client.BaseAddress = new Uri("http://localhost:5002"); // products.service
-//});
+builder.Services.AddHttpClient<IProductClient, ProductClient>(client =>
+    client.BaseAddress = new Uri("http://localhost:5176")); // Cambia a host real
 
 
 var app = builder.Build();

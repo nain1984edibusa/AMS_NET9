@@ -4,5 +4,6 @@
     {
         public string PolicyNumber { get; set; }
         public string ProductCode { get; set; }
+        public string DescripcionCode { get; set; }
     }
 }

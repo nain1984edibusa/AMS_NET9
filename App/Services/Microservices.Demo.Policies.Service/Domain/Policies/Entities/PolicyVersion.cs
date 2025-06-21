@@ -13,7 +13,7 @@ namespace Microservices.Demo.Policies.Service.Domain.Policies.Entities
         {
         }
 
-        private PolicyVersion(
+        protected PolicyVersion(
             Policy policy,
             int version,
             PolicyHolder policyHolder,

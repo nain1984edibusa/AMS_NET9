@@ -3,7 +3,9 @@ using Microservices.Demo.Messages.Services.Policies.Events;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.CreatePolicy;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Dtos;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetAllPolicies;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetHolder;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetPolicyDetailsByNumber;
+using Microservices.Demo.Policies.Service.Domain.Policies.Entities;
 using Microservices.Demo.Policies.Service.Domain.Policies.Extensions;
 using Microservices.Demo.Policies.Service.Domain.Policies.ValueObjects;
 using Microservices.Demo.Policies.Service.Framework.Rest.Models.Requests;
@@ -60,6 +62,11 @@ namespace Microservices.Demo.Policies.Service.Application.UseCases.Policy.Mappin
 
 
             CreateMap<GetAllPoliciesRequest, GetAllPoliciesQuery>();
+            // Mapeo base entre la entidad y el DTO
+            CreateMap<PolicyVersion, PolicyVersionDto>();
+
+            CreateMap<PolicyVersion, GetHolderByPolicyIdResult>()
+            .IncludeBase<PolicyVersion, PolicyVersionDto>();
         }
     }
 }

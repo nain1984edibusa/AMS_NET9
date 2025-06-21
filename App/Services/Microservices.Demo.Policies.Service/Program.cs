@@ -10,9 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Host.AddSerilogLogstash();
 builder.Services.AddHostServices(builder.Configuration);
 
-//builder.Services.AddScoped<IQueryUseCase<GetAllPoliciesQuery, GetAllPoliciesResult>, GetAllPoliciesUseCase>();
-
-
 var app = builder.Build();
 
 await app.UseHostSetupAsync();

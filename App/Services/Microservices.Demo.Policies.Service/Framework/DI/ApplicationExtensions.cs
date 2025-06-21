@@ -6,6 +6,7 @@ using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.C
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.TerminatePolicy;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Interfaces;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetAllPolicies;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetHolder;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetPolicyDetailsByNumber;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Services;
 using Microservices.SharedKernel.Application.UseCases.Interfaces;
@@ -22,6 +23,9 @@ namespace Microservices.Demo.Policies.Service.Framework.DI
             services.AddScoped<ICommandUseCase<CreateOfferByAgentCommand, CreateOfferByAgentResult>, CreateOfferByAgentUseCase>();
 
             services.AddScoped<IQueryUseCase<GetPolicyDetailsByNumberQuery, GetPolicyDetailsByNumberResult>, GetPolicyDetailsByNumberUseCase>();
+            services.AddScoped<IQueryUseCase<GetHolderByPolicyIdQuery, GetHolderByPolicyIdResult>, GetHolderByPolicyIdUseCase>();
+
+
             services.AddScoped<ICommandUseCase<CreatePolicyCommand, CreatePolicyResult>, CreatePolicyUseCase>();
             services.AddScoped<ICommandUseCase<TerminatePolicyCommand, TerminatePolicyResult>, TerminatePolicyUseCase>();
 

@@ -7,4 +7,5 @@ public interface IPolicyRepository : IRepository<Policy>
 {
     Task<List<Policy>> FindAllPolicies();
     Task<Policy> WithNumber(string number);
+    Task<PolicyVersion> WithPolicyId(string number);
 }

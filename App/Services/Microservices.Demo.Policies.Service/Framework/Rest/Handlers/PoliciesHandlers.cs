@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.CreatePolicy;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.TerminatePolicy;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Dtos;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Interfaces;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetAllPolicies;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetHolder;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetPolicyDetailsByNumber;
 using Microservices.Demo.Policies.Service.Framework.Rest.Models.Requests;
 using Microservices.Demo.Policies.Service.Framework.Rest.Models.Responses;
@@ -33,6 +35,7 @@ namespace Microservices.Demo.Policies.Service.Framework.Rest.Handlers
 
             return Results.Ok(response);
         }
+
         public static async Task<IResult> GetPolicyDetailsByNumberAsync(
            [FromServices] IMapper _mapper,
            [FromServices] IPolicyApplicationService _service,
@@ -44,6 +47,27 @@ namespace Microservices.Demo.Policies.Service.Framework.Rest.Handlers
 
             return result is not null ? Results.Ok(_mapper.Map<GetPolicyDetailsByNumberResponse>(result)) : Results.NotFound();
         }
+
+        public static async Task<IResult> GetHolderByPolicyIdAsync(
+          [FromServices] IMapper _mapper,
+          [FromServices] IPolicyApplicationService _service,
+          [AsParameters] GetHolderByPolicyIdRequest request
+       )
+        {
+            var command = _mapper.Map<GetHolderByPolicyIdQuery>(request);
+            var result = await _service.GetHolderByPolicyId.ExecuteAsync(command);
+
+            if (result is null)
+                return Results.NotFound();
+
+            var response = new GetHolderByPolicyIdResponse
+            {
+                PolicyVersion = _mapper.Map<PolicyVersionDto>(result)
+            };
+
+            return Results.Ok(response);
+        }
+
         public static async Task<IResult> CreatePolicyAsync(
             [FromServices] IMapper _mapper,
             [FromServices] IPolicyApplicationService _service,

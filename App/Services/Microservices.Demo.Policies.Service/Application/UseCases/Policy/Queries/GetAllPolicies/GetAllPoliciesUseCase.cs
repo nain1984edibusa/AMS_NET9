@@ -53,6 +53,7 @@ namespace Microservices.Demo.Policies.Service.Application.UseCases.Policy.Querie
 
                     return new PolicyDto
                     {
+                        Id = policy.Id.ToString(),
                         Number = policy.Number,
                         ProductCode = policy.ProductCode,
                         PolicyHolder = firstVersion != null

@@ -4,6 +4,6 @@ namespace Microservices.Demo.Policies.Service.Application.UseCases.Policy.Querie
 {
     public class GetHolderByPolicyIdQuery : IQuery
     {
-        public string Code { get; set; }
+        public string PolicyId { get; set; }
     }
 }

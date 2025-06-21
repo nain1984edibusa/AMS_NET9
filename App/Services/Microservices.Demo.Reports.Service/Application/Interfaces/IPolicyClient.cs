@@ -6,5 +6,6 @@ namespace Microservices.Demo.Reports.Service.Application.Interfaces
     {
         Task<List<PolicyDto>> GetPoliciesAsync();
         Task<PolicyDto> GetDetPolicyAsync(string number);
+        //Task<PolicyVersionDto> GetPolicyVersionAsync(string number);
     }
 }

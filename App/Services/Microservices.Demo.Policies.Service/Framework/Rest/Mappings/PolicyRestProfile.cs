@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.CreatePolicy;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.TerminatePolicy;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Dtos;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetAllPolicies;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetHolder;
+using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetPolicyDetailsByNumber;
+using Microservices.Demo.Policies.Service.Domain.Policies.Entities;
 using Microservices.Demo.Policies.Service.Framework.Rest.Models.Dtos;
 using Microservices.Demo.Policies.Service.Framework.Rest.Models.Requests;
 using Microservices.Demo.Policies.Service.Framework.Rest.Models.Responses;
-
-using PersonRestDto = Microservices.Demo.Policies.Service.Framework.Rest.Models.Dtos.PersonDto;
-using AddressRestDto = Microservices.Demo.Policies.Service.Framework.Rest.Models.Dtos.AddressDto;
-
-using PersonAppDto = Microservices.Demo.Policies.Service.Application.UseCases.Policy.Dtos.PersonDto;
 using AddressAppDto = Microservices.Demo.Policies.Service.Application.UseCases.Policy.Dtos.AddressDto;
-using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.TerminatePolicy;
-using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Commands.CreatePolicy;
-using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Dtos;
-using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetPolicyDetailsByNumber;
-using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetAllPolicies;
+using AddressRestDto = Microservices.Demo.Policies.Service.Framework.Rest.Models.Dtos.AddressDto;
+using PersonAppDto = Microservices.Demo.Policies.Service.Application.UseCases.Policy.Dtos.PersonDto;
+using PersonRestDto = Microservices.Demo.Policies.Service.Framework.Rest.Models.Dtos.PersonDto;
 
 namespace Microservices.Demo.Products.Service.Framework.Rest.Mappings
 {
@@ -31,6 +31,18 @@ namespace Microservices.Demo.Products.Service.Framework.Rest.Mappings
 
             CreateMap<TerminatePolicyRequest, TerminatePolicyCommand>();
             CreateMap<TerminatePolicyResult, TerminatePolicyResponse>();
+
+            CreateMap<GetHolderByPolicyIdRequest, GetHolderByPolicyIdQuery>();
+
+
+
+            // ⚠️ ESTE ES CLAVE PARA EVITAR LA EXCEPCIÓN
+            CreateMap<PolicyVersionDto, GetHolderByPolicyIdResponse>();
+
+            CreateMap<GetHolderByPolicyIdResult, GetHolderByPolicyIdResponse>()
+                .IncludeBase<PolicyVersionDto, GetHolderByPolicyIdResponse>();
+
+
         }
     }
 }

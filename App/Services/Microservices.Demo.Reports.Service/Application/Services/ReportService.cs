@@ -22,6 +22,10 @@ namespace Microservices.Demo.Reports.Service.Application.Services
 
             foreach (var policy in policies)
             {
+
+                var det_policy = await _policyClient.GetDetPolicyAsync(policy.Number);
+                if (det_policy == null) continue;
+
                 var product = await _productClient.GetProductByCodeAsync(policy.ProductCode);
                 if (product == null) continue;
 
@@ -34,10 +38,8 @@ namespace Microservices.Demo.Reports.Service.Application.Services
 
                     PolicyNumber = policy.Number,
                     ProductCode = policy.ProductCode,
-                    DescripcionCode = product.description
-
-
-
+                    DescripcionCode = product.description,
+                    Cliente = det_policy.PolicyHolder
                 });
             }
 

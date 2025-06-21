@@ -15,6 +15,7 @@
         //public string accountNumber { get; set; }
         //public List<string> covers  {get; set; }
 
+        public string Id { get; set; }
         public string Number { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }

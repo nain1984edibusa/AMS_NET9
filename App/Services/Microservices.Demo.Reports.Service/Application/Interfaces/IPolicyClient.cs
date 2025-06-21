@@ -5,5 +5,6 @@ namespace Microservices.Demo.Reports.Service.Application.Interfaces
     public interface IPolicyClient
     {
         Task<List<PolicyDto>> GetPoliciesAsync();
+        Task<PolicyDto> GetDetPolicyAsync(string number);
     }
 }

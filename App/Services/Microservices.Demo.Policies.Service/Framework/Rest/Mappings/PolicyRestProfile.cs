@@ -14,6 +14,7 @@ using AddressAppDto = Microservices.Demo.Policies.Service.Application.UseCases.P
 using AddressRestDto = Microservices.Demo.Policies.Service.Framework.Rest.Models.Dtos.AddressDto;
 using PersonAppDto = Microservices.Demo.Policies.Service.Application.UseCases.Policy.Dtos.PersonDto;
 using PersonRestDto = Microservices.Demo.Policies.Service.Framework.Rest.Models.Dtos.PersonDto;
+using PolicyHolderDto = Microservices.Demo.Policies.Service.Framework.Rest.Models.Dtos.PolicyHolderDto;
 
 namespace Microservices.Demo.Products.Service.Framework.Rest.Mappings
 {
@@ -43,9 +44,18 @@ namespace Microservices.Demo.Products.Service.Framework.Rest.Mappings
             CreateMap<GetHolderByPolicyIdResult, GetHolderByPolicyIdResponse>()
                 .IncludeBase<PolicyVersionDto, GetHolderByPolicyIdResponse>();
 
-            CreateMap<PolicyHolder, PolicyHolderDto>();
+            CreateMap<PolicyHolder, Policies.Service.Application.UseCases.Policy.Dtos.PolicyHolderDto>();
             CreateMap<PolicyVersion, PolicyVersionDto>()
                 .ForMember(dest => dest.PolicyHolder, opt => opt.MapFrom(src => src.PolicyHolder));
+
+            CreateMap<PolicyHolder, PolicyHolderDto>()
+                .ForMember(dest => dest.HolderFirstName, opt => opt.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.HolderLastName, opt => opt.MapFrom(src => src.LastName))
+                .ForMember(dest => dest.HolderStreet, opt => opt.MapFrom(src => src.Address.Street))
+                .ForMember(dest => dest.HolderCountry, opt => opt.MapFrom(src => src.Address.Country))
+                .ForMember(dest => dest.HolderCity, opt => opt.MapFrom(src => src.Address.City))
+                .ForMember(dest => dest.HolderZipCode, opt => opt.MapFrom(src => src.Address.ZipCode));
+
         }
     }
 }

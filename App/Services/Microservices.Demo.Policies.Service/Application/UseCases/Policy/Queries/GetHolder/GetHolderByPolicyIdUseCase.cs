@@ -25,8 +25,6 @@ namespace Microservices.Demo.Policies.Service.Application.UseCases.Policy.Querie
             using var activity = _activitySource.StartActivity("GetHolderByPolicyIdResultUseCase.ExecuteAsync", ActivityKind.Internal);
 
             var policy = await _unitOfWork.Policies.WithPolicyId(input.PolicyId);
-            //if (policy == null) throw new ApplicationException($"Policy {input.PolicyNumber} not found!");
-
             var result = _mapper.Map<GetHolderByPolicyIdResult>(policy);
 
             activity.SetTagsFromObject(result, "Policy");

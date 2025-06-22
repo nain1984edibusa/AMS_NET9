@@ -5,7 +5,7 @@ namespace Microservices.Demo.Policies.Service.Framework.Rest.Models.Responses
     public class GetHolderByPolicyIdResponse : PolicyResponse
     {
 
-        public PolicyVersionDto PolicyVersion { get; set; }
+        //public PolicyVersionDto PolicyVersion { get; set; }
 
     }
 }

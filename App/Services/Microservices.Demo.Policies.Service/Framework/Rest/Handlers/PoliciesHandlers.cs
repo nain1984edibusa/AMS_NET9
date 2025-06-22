@@ -54,18 +54,8 @@ namespace Microservices.Demo.Policies.Service.Framework.Rest.Handlers
           [AsParameters] GetHolderByPolicyIdRequest request
        )
         {
-            var command = _mapper.Map<GetHolderByPolicyIdQuery>(request);
-            var result = await _service.GetHolderByPolicyId.ExecuteAsync(command);
-
-            if (result is null)
-                return Results.NotFound();
-
-            var response = new GetHolderByPolicyIdResponse
-            {
-                PolicyVersion = _mapper.Map<PolicyVersionDto>(result)
-            };
-
-            return Results.Ok(response);
+            var result = await _service.GetHolderByPolicyId.ExecuteAsync(_mapper.Map<GetHolderByPolicyIdQuery>(request));
+            return result is not null ? Results.Ok(_mapper.Map<GetHolderByPolicyIdResponse>(result)) : Results.NotFound();
         }
 
         public static async Task<IResult> CreatePolicyAsync(

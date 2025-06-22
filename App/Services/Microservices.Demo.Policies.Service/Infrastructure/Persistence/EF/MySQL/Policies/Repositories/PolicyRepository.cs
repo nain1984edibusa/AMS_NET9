@@ -29,9 +29,10 @@ namespace Microservices.Demo.Policies.Service.Infrastructure.Persistence.EF.MySQ
 
         public async Task<PolicyVersion> WithPolicyId(string number)
         {
-            return await _context.PolicyVersions
-                            //.Include(p => p.Versions)
-                            .FirstOrDefaultAsync(p => p.Policy.Id.ToString() == number);
+            return await _context
+                .PolicyVersions
+                .Include(p => p.PolicyHolder)
+                .FirstOrDefaultAsync(p => p.Policy.Id.ToString() == number);
         }
     }
 }

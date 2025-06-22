@@ -37,9 +37,12 @@ namespace Microservices.Demo.Reports.Service.Application.Services
                         PolicyNumber = policy.Number,
                         ProductCode = policy.ProductCode,
                         DescripcionCode = product.description,
-                        HolderFisrtName = policeVersion.PolicyHolder.HolderFirstName,
+                        HolderFirstName = policeVersion.PolicyHolder.HolderFirstName,
                         HolderLastName = policeVersion.PolicyHolder.HolderLastName,
-                        HolderStreet = policeVersion.PolicyHolder.HolderStreet
+                        HolderStreet = policeVersion.PolicyHolder.HolderStreet,
+                        HolderCountry = policeVersion.PolicyHolder.HolderCountry,
+                        HolderCity = policeVersion.PolicyHolder.HolderCity,
+                        HolderZipCode = policeVersion.PolicyHolder.HolderZipCode
                     });
                 }
                 catch (Exception ex)

@@ -20,33 +20,34 @@ namespace Microservices.Demo.Reports.Service.Application.Services
             var policies = await _policyClient.GetPoliciesAsync();
             var report = new List<PolicyReportDto>();
 
-            //foreach (var policy in policies)
-            //{
+            foreach (var policy in policies)
+            {
+                try
+                {
+                    var policeVersion = await _policyClient.GetPolicyVersionAsync(policy.Id);
+                    if (policeVersion?.PolicyHolder == null)
+                        continue;
 
-            //    //var det_policy = await _policyClient.GetDetPolicyAsync(policy.Number);
-            //    //if (det_policy == null) continue;
+                    var product = await _productClient.GetProductByCodeAsync(policy.ProductCode);
+                    if (product == null)
+                        continue;
 
-            //    var policeVersion = await _policyClient.GetPolicyVersionAsync(policy.ProductCode);
-
-
-
-
-            //    var product = await _productClient.GetProductByCodeAsync(policy.ProductCode);
-            //    if (product == null) continue;
-
-            //    report.Add(new PolicyReportDto
-            //    {
-            //        //PolicyId = policy.Id,
-            //        //PolicyNumber = policy.Number,
-            //        //ProductId = product.Id,
-            //        //ProductName = product.Name
-
-            //        PolicyNumber = policy.Number,
-            //        ProductCode = policy.ProductCode,
-            //        DescripcionCode = product.description,
-            //        //Cliente = det_policy.PolicyHolder
-            //    });
-            //}
+                    report.Add(new PolicyReportDto
+                    {
+                        PolicyNumber = policy.Number,
+                        ProductCode = policy.ProductCode,
+                        DescripcionCode = product.description,
+                        HolderFisrtName = policeVersion.PolicyHolder.HolderFirstName,
+                        HolderLastName = policeVersion.PolicyHolder.HolderLastName,
+                        HolderStreet = policeVersion.PolicyHolder.HolderStreet
+                    });
+                }
+                catch (Exception ex)
+                {
+                    // Puedes registrar el error si lo deseas, pero continuar con las demás iteraciones
+                    Console.WriteLine($"Error procesando póliza {policy.Number}: {ex.Message}");
+                }
+            }
 
             return report;
         }

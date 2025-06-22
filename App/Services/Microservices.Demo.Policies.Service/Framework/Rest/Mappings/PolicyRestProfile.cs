@@ -6,6 +6,7 @@ using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.Ge
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetHolder;
 using Microservices.Demo.Policies.Service.Application.UseCases.Policy.Queries.GetPolicyDetailsByNumber;
 using Microservices.Demo.Policies.Service.Domain.Policies.Entities;
+using Microservices.Demo.Policies.Service.Domain.Policies.ValueObjects;
 using Microservices.Demo.Policies.Service.Framework.Rest.Models.Dtos;
 using Microservices.Demo.Policies.Service.Framework.Rest.Models.Requests;
 using Microservices.Demo.Policies.Service.Framework.Rest.Models.Responses;
@@ -42,7 +43,9 @@ namespace Microservices.Demo.Products.Service.Framework.Rest.Mappings
             CreateMap<GetHolderByPolicyIdResult, GetHolderByPolicyIdResponse>()
                 .IncludeBase<PolicyVersionDto, GetHolderByPolicyIdResponse>();
 
-
+            CreateMap<PolicyHolder, PolicyHolderDto>();
+            CreateMap<PolicyVersion, PolicyVersionDto>()
+                .ForMember(dest => dest.PolicyHolder, opt => opt.MapFrom(src => src.PolicyHolder));
         }
     }
 }

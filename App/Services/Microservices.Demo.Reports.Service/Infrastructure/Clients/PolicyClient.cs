@@ -13,6 +13,11 @@ namespace Microservices.Demo.Reports.Service.Infrastructure.Clients
             _httpClient = httpClient;
         }
 
+        public Task<PolicyDto> GetDetPolicyAsync(string number)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<PolicyDto>> GetPoliciesAsync()
         {
             //var response = await _httpClient.GetAsync("/api/policies");
@@ -36,13 +41,15 @@ namespace Microservices.Demo.Reports.Service.Infrastructure.Clients
             return policiesWrapper?.Policies ?? new List<PolicyDto>();
         }
 
-        public async Task<PolicyDto?> GetDetPolicyAsync(string number)
+        public async Task<PolicyVersionDto?> GetPolicyVersionAsync(string policyId)
         {
-            var response = await _httpClient.GetAsync($"/api/policies/{number}");
+            var response = await _httpClient.GetAsync($"/api/policies/by-id/{policyId}");
             if (!response.IsSuccessStatusCode) return null;
 
             var json = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<PolicyDto>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return JsonSerializer.Deserialize<PolicyVersionDto>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
+
+
     }
 }

@@ -83,6 +83,20 @@
       "DownstreamPathTemplate": "/api/accounts/{everything}",
       "DownstreamScheme": "http",
       "ServiceName": "payments.service"
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/reports",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "DownstreamPathTemplate": "/api/reports",
+      "DownstreamScheme": "http",
+      "ServiceName": "reports.service"
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/reports/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "DownstreamPathTemplate": "/api/reports/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "reports.service"
     }
   ],
   "GlobalConfiguration": {

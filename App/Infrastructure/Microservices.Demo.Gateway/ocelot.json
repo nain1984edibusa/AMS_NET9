@@ -85,16 +85,16 @@
       "ServiceName": "payments.service"
     },
     {
-      "UpstreamPathTemplate": "/gateway/reports",
+      "UpstreamPathTemplate": "/gateway/report",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-      "DownstreamPathTemplate": "/api/reports",
+      "DownstreamPathTemplate": "/api/report",
       "DownstreamScheme": "http",
       "ServiceName": "reports.service"
     },
     {
-      "UpstreamPathTemplate": "/gateway/reports/{everything}",
+      "UpstreamPathTemplate": "/gateway/report/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-      "DownstreamPathTemplate": "/api/reports/{everything}",
+      "DownstreamPathTemplate": "/api/report/{everything}",
       "DownstreamScheme": "http",
       "ServiceName": "reports.service"
     }

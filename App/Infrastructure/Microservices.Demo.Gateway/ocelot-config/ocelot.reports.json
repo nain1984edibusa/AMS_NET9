@@ -1,30 +1,30 @@
 ﻿{
   "Routes": [
     {
-      "UpstreamPathTemplate": "/gateway/reports",
+      "UpstreamPathTemplate": "/gateway/report",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-      "DownstreamPathTemplate": "/api/reports",
-      "DownstreamScheme": "http",
-      "ServiceName": "products.service",
-      "LoadBalancerOptions": {
-        "Type": "RoundRobin"
-      },
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "ApiSecurityAuthenticationScheme"
-      }
-    },
-    {
-      "UpstreamPathTemplate": "/gateway/reports/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-      "DownstreamPathTemplate": "/api/reports/{everything}",
+      "DownstreamPathTemplate": "/api/report",
       "DownstreamScheme": "http",
       "ServiceName": "reports.service",
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
-      },
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "ApiSecurityAuthenticationScheme"
       }
+      // "AuthenticationOptions": {
+      //   "AuthenticationProviderKey": "ApiSecurityAuthenticationScheme"
+      // }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/report/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "DownstreamPathTemplate": "/api/report/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "reports.service",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
+      // "AuthenticationOptions": {
+      //   "AuthenticationProviderKey": "ApiSecurityAuthenticationScheme"
+      // }
     }
   ]
 }

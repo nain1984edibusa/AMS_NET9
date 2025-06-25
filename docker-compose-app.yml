@@ -17,7 +17,14 @@ services:
       context: .
       dockerfile: App/Services/Microservices.Demo.Product.Service/Dockerfile
     image: products.service:1.0.0
- 
+  reports.service:
+    <<: *service
+    build:
+      context: .
+      dockerfile: App/Services/Microservices.Demo.Reports.Service/Dockerfile
+    image: reports.service:1.0.0
+    ports:
+      - "5263:8080"  # Opcional, para acceder desde fuera
   pricing.service:
     <<: *service
     build:

@@ -11,23 +11,23 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["App/Services/Microservices.Demo.Reports.Service/Microservices.Demo.Reportss.Service.csproj", "App/Services/Microservices.Demo.Reports.Service/"]
+COPY ["App/Services/Microservices.Demo.Reports.Service/Microservices.Demo.Reports.Service.csproj", "App/Services/Microservices.Demo.Reports.Service/"]
 COPY ["Libs/Microservices.Infrastructure.Persistences/Microservices.Infrastructure.Persistences.csproj", "Libs/Microservices.Infrastructure.Persistences/"]
 COPY ["Libs/Microservices.Infrastructure.Trace/Microservices.Infrastructure.Trace.csproj", "Libs/Microservices.Infrastructure.Trace/"]
 COPY ["Libs/Microservices.Infrastructure.Logger/Microservices.Infrastructure.Logger.csproj", "Libs/Microservices.Infrastructure.Logger/"]
 COPY ["Libs/Microservices.SharedKernel/Microservices.SharedKernel.csproj", "Libs/Microservices.SharedKernel/"]
-RUN dotnet restore "./App/Services/Microservices.Demo.Reports.Service/Microservices.Demo.Reportss.Service.csproj"
+RUN dotnet restore "./App/Services/Microservices.Demo.Reports.Service/Microservices.Demo.Reports.Service.csproj"
 COPY . .
 WORKDIR "/src/App/Services/Microservices.Demo.Reports.Service"
-RUN dotnet build "./Microservices.Demo.Reportss.Service.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./Microservices.Demo.Reports.Service.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Microservices.Demo.Reportss.Service.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Microservices.Demo.Reports.Service.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Microservices.Demo.Reportss.Service.dll"]
+ENTRYPOINT ["dotnet", "Microservices.Demo.Reports.Service.dll"]

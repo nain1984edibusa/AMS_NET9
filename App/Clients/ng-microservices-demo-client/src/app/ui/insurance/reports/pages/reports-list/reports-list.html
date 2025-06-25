@@ -1,1 +1,26 @@
-<p>reports-list works!</p>
+<p>reports-list works up!</p>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
+
+    <!-- Cédula Column -->
+    <ng-container matColumnDef="cedula">
+      <th mat-header-cell *matHeaderCellDef>Cédula</th>
+      <td mat-cell *matCellDef="let row">{{ row.cedula }}</td>
+    </ng-container>
+  
+    <!-- Apellidos Column -->
+    <ng-container matColumnDef="apellidos">
+      <th mat-header-cell *matHeaderCellDef>Apellidos</th>
+      <td mat-cell *matCellDef="let row">{{ row.apellidos }}</td>
+    </ng-container>
+  
+    <!-- Nombres Column -->
+    <ng-container matColumnDef="nombres">
+      <th mat-header-cell *matHeaderCellDef>Nombres</th>
+      <td mat-cell *matCellDef="let row">{{ row.nombres }}</td>
+    </ng-container>
+  
+    <!-- Encabezado y filas -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  </table>
